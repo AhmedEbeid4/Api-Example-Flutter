@@ -20,7 +20,6 @@ class _AppState extends State<App> {
   List<Game> games=[];
 
   void _getGames() async {
-    print('hhh');
     games = (await ApiService().fetchGames())!;
     setState(() {
 
