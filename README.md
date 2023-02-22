@@ -1,2 +1,2 @@
 # api_example
-Fetching data from JokeAPI `mmobomb.com`
+Fetching data from Games API `mmobomb.com`
