@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:api_example/models/constants.dart';
 import 'package:api_example/models/game.dart';
+
 import 'package:http/http.dart' as http;
 class ApiService{
   Future<List<Game>?> fetchGames() async {

@@ -1,4 +1,4 @@
-import 'package:api_example/api_services.dart';
+import 'package:api_example/services/api_services.dart';
 import 'package:api_example/components/game_item.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'models/game.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatefulWidget {
@@ -17,7 +17,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  List<Game> games=[];
+  List<Game>? games=[];
 
   void _getGames() async {
     games = (await ApiService().fetchGames())!;
@@ -41,15 +41,15 @@ class _AppState extends State<App> {
         appBar: AppBar(
           title: const Text('API Example'),
         ),
-        body: games!.isEmpty
+        body: games == null || games!.isEmpty
             ? const Center(
                 child: CircularProgressIndicator(),
               )
             : ListView.builder(
-                itemCount: games.length,
+                itemCount: games?.length,
                 itemBuilder: (context, index) {
-                  return GameItem(game: games[index],onClick: ()async{
-                    await launchUrl(Uri.parse(games[index].gameUrl));
+                  return GameItem(game: games![index],onClick: ()async{
+                    await launchUrl(Uri.parse(games![index].gameUrl));
                   },);
                 }),
       ),
